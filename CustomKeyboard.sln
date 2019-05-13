@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomKeyboard.Android", "CustomKeyboard.Android\CustomKeyboard.Android.csproj", "{F3A2977D-CC37-473E-81C9-90C667409792}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomKeyboard", "CustomKeyboard\CustomKeyboard.csproj", "{FEABDFEE-7C96-4455-BFCE-114698505C6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3A2977D-CC37-473E-81C9-90C667409792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A2977D-CC37-473E-81C9-90C667409792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A2977D-CC37-473E-81C9-90C667409792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A2977D-CC37-473E-81C9-90C667409792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEABDFEE-7C96-4455-BFCE-114698505C6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEABDFEE-7C96-4455-BFCE-114698505C6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEABDFEE-7C96-4455-BFCE-114698505C6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEABDFEE-7C96-4455-BFCE-114698505C6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

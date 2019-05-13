@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CustomKeyboard"
+    x:Class="CustomKeyboard.MainPage"
+    Title="Custom Keyboard App"
+    BackgroundColor="White">
+    <ScrollView>
+        <Grid Padding="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Entry
+                Grid.Row="0"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start"
+                Placeholder="Regular entry..." />
+            
+            <StackLayout
+                Grid.Row="1"
+                Orientation="Vertical">
+                <local:EntryWithCustomKeyboard
+                    x:Name="entry1"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="0, 0, 0, 20"
+                    Keyboard="Text"
+                    TextColor="Black"
+                    Placeholder="Custom Keyboard entry..." />
+                
+                <local:EntryWithCustomKeyboard
+                    x:Name="entry2"
+                    HorizontalOptions="FillAndExpand"
+                    Keyboard="Text"
+                    TextColor="Black"
+                    Placeholder="Custom Keyboard entry 2..." />
+            </StackLayout>
+            
+            <BoxView
+                Grid.Row="2" />
+            
+        </Grid>
+    </ScrollView>
+</ContentPage>
