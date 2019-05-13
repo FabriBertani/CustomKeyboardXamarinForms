@@ -6,7 +6,7 @@ namespace CustomKeyboard
     public class EntryWithCustomKeyboard : Entry
     {
         public static readonly BindableProperty EnterCommandProperty = BindableProperty.Create(
-            nameof(EnterCommandProperty),
+            nameof(EnterCommand),
             typeof(ICommand),
             typeof(EntryWithCustomKeyboard),
             default(ICommand),
