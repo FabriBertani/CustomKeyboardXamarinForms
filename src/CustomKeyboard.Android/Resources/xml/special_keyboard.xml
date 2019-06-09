@@ -41,8 +41,9 @@
     
     <Row>
         <Key android:codes="0" android:keyWidth="0dp" android:horizontalGap="2%p" android:keyEdgeFlags="left" />
-        <Key android:codes="67" android:keyLabel="DELETE" android:keyWidth="37%p" />
-        <Key android:codes="66" android:keyLabel="ENTER" android:keyWidth="56%p" />
+        <Key android:codes="100" android:keyLabel="ADV" android:keyWidth="16%p" />
+        <Key android:codes="67" android:keyLabel="DELETE" android:keyWidth="21%p" />
+        <Key android:codes="66" android:keyLabel="ENTER" android:keyWidth="55%p" />
         <Key android:codes="0" android:keyWidth="0dp" android:horizontalGap="2%p" android:keyEdgeFlags="right"  />
     </Row>
 </Keyboard>

@@ -1,5 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.Runtime;
 using Android.Text;
 using Android.Views;
@@ -27,7 +29,7 @@ namespace CustomKeyboard.Droid.Renderers
 
         private InputTypes inputTypeToUse;
 
-        private bool keyPressed;
+        private bool keyPressed, capsMode;
 
         public EntryWithCustomKeyboardRenderer(Context context) : base(context)
         {
@@ -76,6 +78,24 @@ namespace CustomKeyboard.Droid.Renderers
                 this.Control.RequestFocus();
             else
                 this.Control.ClearFocus();
+        }
+
+        protected override void OnDraw(Canvas canvas)
+        {
+            base.OnDraw(canvas);
+
+            var keys = this.mKeyboard.Keys;
+
+            foreach (var key in keys)
+            {
+                if (key.Codes[0] == (int)Keycode.Enter)
+                {
+                    var dr = (Drawable)this.context.GetDrawable(Resource.Drawable.enter_arrow_large);
+
+                    dr.SetBounds(key.X, key.Y, key.X + key.Width, key.Y + key.Height);
+                    dr.Draw(canvas);
+                }
+            }
         }
 
         #region EditText event handlers
@@ -202,6 +222,17 @@ namespace CustomKeyboard.Droid.Renderers
             this.EditText.InputType = InputTypes.Null;
         }
 
+        private void ChangeKeyboardView(int keyboardView)
+        {
+            this.HideKeyboardView();
+
+            this.mKeyboard = new Android.InputMethodServices.Keyboard(this.context, keyboardView);
+
+            this.SetCurrentKeyboard();
+
+            this.ShowKeyboardWithAnimation();
+        }
+
         #endregion
 
         // Implementing IOnKeyboardActionListener interface
@@ -227,6 +258,22 @@ namespace CustomKeyboard.Droid.Renderers
 
             switch(ev.KeyCode)
             {
+                case Keycode.ShiftLeft:
+                case Keycode.ShiftRight:
+                    this.capsMode = !this.capsMode;
+
+                    this.mKeyboard = new Android.InputMethodServices.Keyboard(this.context, Resource.Xml.advance_keyboard);
+
+                    this.mKeyboardView.SetShifted(this.capsMode);
+                    this.mKeyboardView.InvalidateAllKeys();
+                    this.SetCurrentKeyboard();
+                    break;
+                case Keycode.ButtonY:
+                    this.ChangeKeyboardView(Resource.Xml.advance_keyboard);                    
+                    break;
+                case Keycode.ButtonZ:
+                    this.ChangeKeyboardView(Resource.Xml.special_keyboard);
+                    break;
                 case Keycode.Enter:
                     // Sometimes EditText takes long to update the HasFocus status
                     if (this.EditText.HasFocus)
@@ -247,11 +294,19 @@ namespace CustomKeyboard.Droid.Renderers
 
             if (this.EditText.HasFocus)
             {
+                if (this.capsMode)
+                    this.EditText.SetFilters(new IInputFilter[] { new InputFilterAllCaps() });
+                else
+                {
+                    this.EditText.SetFilters(new IInputFilter[] { });
+                    //this.EditText.InputType = this.inputTypeToUse;
+                }
+
                 this.DispatchKeyEvent(ev);
 
                 this.keyPressed = false;
             }
-        }
+        }        
 
         public void OnPress([GeneratedEnum] Keycode primaryCode)
         {
